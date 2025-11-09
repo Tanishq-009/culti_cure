@@ -1,2 +1,2 @@
-# culti_cure
-plant disease ditector
+# Plant_Disease
+ 
