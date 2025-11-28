@@ -17,170 +17,376 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS to match Flask app exactly
+# Professional UI/UX Design - Modern & Aesthetic
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     
     .main {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f5f5f5;
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     }
     
     .stApp {
-        background-color: #f5f5f5;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     }
     
     /* Hide default Streamlit elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+    .stDeployButton {display: none;}
     
-    /* Header styling */
-    .navbar {
-        background-color: #f8f9fa;
-        padding: 1rem 2rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Modern Navigation Bar */
+    .navbar-modern {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1.2rem 3rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         margin-bottom: 2rem;
     }
     
-    .navbar-brand {
-        font-size: 20px;
+    .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ff914d 0%, #ff6b35 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+    }
+    
+    .logo-icon {
+        font-size: 28px;
+        margin-right: 8px;
+    }
+    
+    /* Modern Buttons */
+    .btn-primary-modern {
+        background: linear-gradient(135deg, #ff914d 0%, #ff6b35 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 14px 40px;
+        font-size: 18px;
         font-weight: 600;
-        color: #ff914d;
-        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 145, 77, 0.4);
     }
     
-    .nav-link {
-        color: #333;
+    .btn-primary-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 145, 77, 0.5);
+    }
+    
+    .btn-secondary-modern {
+        background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    }
+    
+    .btn-secondary-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    }
+    
+    .btn-buy-modern {
+        background: linear-gradient(135deg, #ff5c4d 0%, #ff4d4d 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 24px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(255, 92, 77, 0.3);
         text-decoration: none;
-        margin: 0 1rem;
+        display: inline-block;
+    }
+    
+    .btn-buy-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(255, 92, 77, 0.4);
+    }
+    
+    /* Navigation Buttons */
+    .nav-btn-modern {
+        background: transparent;
+        color: #2c3e50;
+        border: none;
         font-weight: 500;
+        font-size: 15px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 8px;
     }
     
-    .nav-link:hover {
+    .nav-btn-modern:hover {
+        background: rgba(255, 145, 77, 0.1);
         color: #ff914d;
     }
     
-    /* Button styling - only for Start button */
-    button[kind="primary"] {
-        background-image: linear-gradient(270deg, #ff914d, #ff3131) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 100px !important;
-        padding: 1% 6% !important;
-        font-size: 20px !important;
-        font-weight: 600 !important;
+    /* Modern Cards */
+    .card-modern {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        margin: 1.5rem 0;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    /* Submit button styling - green button */
-    button[data-testid="baseButton-secondary"] {
-        background-color: #28a745 !important;
+    .card-modern:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .card-feature {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        margin: 1rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+    
+    .card-feature:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-product {
+        background: white;
+        padding: 1.8rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        margin: 1rem 0;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+    
+    .card-product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    /* Typography */
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin: 3rem 0 1rem 0;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #5a6c7d;
+        text-align: center;
+        margin-bottom: 3rem;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #2c3e50;
+        text-align: center;
+        margin: 2rem 0 1rem 0;
+        letter-spacing: -0.5px;
+    }
+    
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+    
+    .card-text {
+        color: #5a6c7d;
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+    
+    /* Feature Icons */
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+    
+    .feature-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+    
+    .feature-desc {
+        color: #7f8c8d;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Status Badges */
+    .badge-healthy {
+        background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+    
+    .badge-diseased {
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+    
+    /* Upload Area */
+    .upload-area {
+        border: 2px dashed #bdc3c7;
+        border-radius: 16px;
+        padding: 3rem;
+        text-align: center;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+    
+    .upload-area:hover {
+        border-color: #ff914d;
+        background: #fff5f0;
+    }
+    
+    /* Results Section */
+    .result-card {
+        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        border-left: 4px solid #ff914d;
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.6s ease-out;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+    
+    /* Custom Streamlit Button Overrides */
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #ff914d 0%, #ff6b35 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 5px !important;
+        border-radius: 50px !important;
+        padding: 14px 40px !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(255, 145, 77, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    button[kind="primary"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(255, 145, 77, 0.5) !important;
+    }
+    
+    button[data-testid="baseButton-secondary"] {
+        background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 12px 30px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3) !important;
+        transition: all 0.3s ease !important;
     }
     
     button[data-testid="baseButton-secondary"]:hover {
-        background-color: #218838 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4) !important;
     }
     
-    .red-btn {
-        background-image: linear-gradient(300deg, #ff5c4d, #ff4d4d);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 0.5rem 1.5rem;
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-    }
-    
-    .green-btn {
-        background-color: #05380b;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 0.5rem 1.5rem;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-    }
-    
-    /* Navigation button styling */
+    /* Navigation buttons styling */
     div[data-testid="column"]:nth-of-type(2) button,
     div[data-testid="column"]:nth-of-type(3) button,
     div[data-testid="column"]:nth-of-type(4) button,
     div[data-testid="column"]:nth-of-type(5) button {
-        background: transparent;
-        color: #333;
-        border: none;
-        font-weight: 500;
-        box-shadow: none;
+        background: transparent !important;
+        color: #2c3e50 !important;
+        border: none !important;
+        font-weight: 500 !important;
+        font-size: 15px !important;
+        box-shadow: none !important;
+        padding: 8px 16px !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
     }
     
     div[data-testid="column"]:nth-of-type(2) button:hover,
     div[data-testid="column"]:nth-of-type(3) button:hover,
     div[data-testid="column"]:nth-of-type(4) button:hover,
     div[data-testid="column"]:nth-of-type(5) button:hover {
-        color: #ff914d;
-        background: transparent;
-    }
-    
-    /* Card styling */
-    .card {
-        background: white;
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin: 1rem 0;
-        height: 100%;
-    }
-    
-    .card-sm {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin: 1rem;
-        width: 90%;
-        height: 100%;
-    }
-    
-    /* Title styling */
-    .main-title {
-        font-size: 3rem;
-        font-weight: 400;
-        color: black;
-        text-align: center;
-        padding-top: 10%;
-        margin-bottom: 1rem;
-    }
-    
-    .subtitle {
-        font-weight: 500;
-        color: black;
-        font-size: 17px;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    
-    .page-title {
-        font-size: 2.5rem;
-        font-weight: 400;
-        color: rgb(4, 54, 4);
-        text-align: center;
-        padding-top: 2%;
-        margin-bottom: 1rem;
-    }
-    
-    .disease-title {
-        font-size: 1.8rem;
-        font-weight: 400;
-        color: rgb(33, 32, 35);
-        text-align: center;
-        padding-top: 10%;
+        background: rgba(255, 145, 77, 0.1) !important;
+        color: #ff914d !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -247,13 +453,14 @@ def is_valid_url(url):
     except:
         return False
 
-# Navigation Header
+# Modern Navigation Header
 def render_header():
-    col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
+    col1, col2, col3, col4, col5 = st.columns([2.5, 1, 1, 1, 1])
     with col1:
         st.markdown("""
-        <div style="font-size: 20px; font-weight: 600; color: #ff914d; margin-top: 10px;">
-            <span style="color: #ff914d; font-size: 24px;">क</span> CultiKure
+        <div style="display: flex; align-items: center; margin-top: 10px;">
+            <span class="logo-icon">🌱</span>
+            <span class="logo-text">CultiKure</span>
         </div>
         """, unsafe_allow_html=True)
     with col2:
@@ -272,7 +479,7 @@ def render_header():
         if st.button("Contact Us", use_container_width=True, key="nav_contact"):
             st.session_state.page = "Contact Us"
             st.rerun()
-    st.markdown("---")
+    st.markdown("<div style='margin-bottom: 2rem;'></div>", unsafe_allow_html=True)
 
 # Initialize session state
 if 'page' not in st.session_state:
@@ -299,86 +506,97 @@ st.sidebar.markdown("""
 # Home Page
 if st.session_state.page == "Home":
     st.markdown("""
-    <div class="main-title"><b>PLANT DISEASE DETECTION</b></div>
-    <p class="subtitle">This AI Engine Will Help To Detect Disease From Following Fruites And Veggies</p>
+    <div class="fade-in">
+        <h1 class="hero-title">Plant Disease Detection</h1>
+        <p class="hero-subtitle">
+            Advanced AI-powered system to detect and diagnose plant diseases from leaf images.<br>
+            Get instant, accurate results to protect your crops and ensure healthy yields.
+        </p>
+    </div>
     """, unsafe_allow_html=True)
     
     # Center the Start button
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1, 1.5, 1])
     with col2:
-        if st.button("Start", use_container_width=True, key="start_btn"):
+        if st.button("🚀 Get Started", use_container_width=True, key="start_btn"):
             st.session_state.page = "AI Disease Detection"
             st.rerun()
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # Four process cards
+    # Four feature cards with icons
+    st.markdown("""
+    <div style="margin: 3rem 0;">
+        <h2 style="text-align: center; font-size: 2rem; font-weight: 700; color: #2c3e50; margin-bottom: 2rem;">
+            How It Works
+        </h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
     col1, col2, col3, col4 = st.columns(4)
     
-    with col1:
-        st.markdown("""
-        <div class="card-sm" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: #666;">Upload plant leaf image</p>
-        </div>
-        """, unsafe_allow_html=True)
+    features = [
+        {"icon": "📸", "title": "Upload Image", "desc": "Simply upload a clear photo of your plant leaf"},
+        {"icon": "🤖", "title": "AI Analysis", "desc": "Our advanced AI analyzes the image in seconds"},
+        {"icon": "💊", "title": "Get Solutions", "desc": "Receive treatment recommendations and supplements"},
+        {"icon": "🌾", "title": "Healthy Crops", "desc": "Enjoy bountiful harvests with healthy plants"}
+    ]
     
-    with col2:
-        st.markdown("""
-        <div class="card-sm" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: #666;">AI analyzes the image</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col3:
-        st.markdown("""
-        <div class="card-sm" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: #666;">Get treatment recommendations</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col4:
-        st.markdown("""
-        <div class="card-sm" style="text-align: center;">
-            <p style="color: #ff914d; font-weight: 600; font-size: 1.1rem;">HAPPY CROPS</p>
-            <p style="font-size: 0.9rem; color: #666;">Healthy plants and better yields</p>
-        </div>
-        """, unsafe_allow_html=True)
+    for i, feature in enumerate(features):
+        with [col1, col2, col3, col4][i]:
+            st.markdown(f"""
+            <div class="card-feature fade-in">
+                <span class="feature-icon">{feature['icon']}</span>
+                <h3 class="feature-title">{feature['title']}</h3>
+                <p class="feature-desc">{feature['desc']}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
 # AI Disease Detection Page
 elif st.session_state.page == "AI Disease Detection":
     st.markdown("""
-    <h1 class="page-title"><b>Detect Disease</b></h1>
+    <h1 class="section-title">Detect Disease</h1>
+    <p style="text-align: center; color: #5a6c7d; font-size: 1.1rem; margin-bottom: 3rem;">
+        Upload your plant leaf image and let our AI analyze it for you
+    </p>
     """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        <div class="card">
-            <h5><b>Why is it necessary to detect disease in plant ?</b></h5>
-            <p style="line-height: 1.8;">
-            Plant diseases affect the growth of their respective species. In addition, some research gaps are
-            identified from which to obtain greater transparency for detecting diseases in plants, even
-            before their symptoms appear clearly. Diagnosis is one of the most important aspects of a plant 
-            pathologist's training. Without proper identification of the disease and the disease-causing agent, 
-            disease control measures can be a waste of time and money and can lead to further plant losses. 
-            Proper disease diagnosis is necessary.
+        <div class="card-modern fade-in">
+            <h3 class="card-title">Why Detect Plant Diseases?</h3>
+            <p class="card-text">
+                Early detection of plant diseases is crucial for maintaining healthy crops and maximizing yields. 
+                Plant diseases can spread rapidly and cause significant damage if not identified and treated promptly. 
+                Our AI-powered system helps you identify diseases before they become severe, allowing you to take 
+                preventive measures and protect your agricultural investment.
+            </p>
+            <br>
+            <p class="card-text">
+                <strong>Benefits:</strong><br>
+                ✓ Early intervention saves crops<br>
+                ✓ Reduces treatment costs<br>
+                ✓ Prevents disease spread<br>
+                ✓ Ensures better yields
             </p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        <div class="card">
-            <h6 style="text-align: center; color: #666; margin-bottom: 2rem;">
-                Simply upload your plant's leaf image and then see the magic of AI.
-            </h6>
+        <div class="card-modern fade-in">
+            <h3 class="card-title" style="text-align: center;">Upload Your Image</h3>
+            <p class="card-text" style="text-align: center; margin-bottom: 2rem;">
+                Simply upload a clear image of your plant's leaf and watch our AI work its magic.
+            </p>
         """, unsafe_allow_html=True)
         
         uploaded_file = st.file_uploader(
-            "Choose an image...",
+            "Choose an image file",
             type=['jpg', 'jpeg', 'png'],
-            help="Upload a clear image of a plant leaf",
+            help="Upload a clear, well-lit image of a plant leaf for best results",
             key="file_uploader"
         )
         
@@ -391,16 +609,26 @@ elif st.session_state.page == "AI Disease Detection":
         st.session_state.last_file = uploaded_file
         
         # Show uploaded image and analyze button
-        st.markdown("---")
+        st.markdown("<br>", unsafe_allow_html=True)
         col1, col2 = st.columns([1, 1])
         
         with col1:
             image = Image.open(uploaded_file)
-            st.image(image, caption="Uploaded Image", use_container_width=True)
+            st.markdown("""
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <h4 style="color: #2c3e50; font-weight: 600;">Uploaded Image</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            st.image(image, use_container_width=True)
         
         with col2:
-            if st.button("Submit", use_container_width=True, key="analyze_btn"):
-                with st.spinner("Analyzing image... Please wait."):
+            st.markdown("""
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <h4 style="color: #2c3e50; font-weight: 600;">Ready to Analyze</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            if st.button("🔍 Analyze Image", use_container_width=True, key="analyze_btn"):
+                with st.spinner("🤖 AI is analyzing your image... Please wait."):
                     pred = predict(image)
                     if pred >= len(disease_info):
                         pred = 0
@@ -425,11 +653,15 @@ elif st.session_state.page == "AI Disease Detection":
             healthy_indices = [3, 5, 7, 11, 15, 18, 20, 23, 24, 25, 28, 38]
             is_healthy = pred in healthy_indices
             
-            st.markdown("---")
+            st.markdown("<br><br>", unsafe_allow_html=True)
             
             # Disease title and image
             st.markdown(f"""
-            <h3 class="disease-title"><b>{title}</b></h3>
+            <div class="fade-in">
+                <h2 style="text-align: center; font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 2rem;">
+                    {title}
+                </h2>
+            </div>
             """, unsafe_allow_html=True)
             
             col_img, _ = st.columns([1, 2])
@@ -443,33 +675,32 @@ elif st.session_state.page == "AI Disease Detection":
             st.markdown("<br>", unsafe_allow_html=True)
             
             # Description card
-            st.markdown("""
-            <div class="card">
-                <h5><b>Brief Descritpion :</b></h5>
-                <p id="content">{}</p>
+            st.markdown(f"""
+            <div class="card-modern fade-in">
+                <h3 class="card-title">📋 Brief Description</h3>
+                <p class="card-text">{description.replace(chr(10), '<br>')}</p>
             </div>
-            """.format(description.replace('\n', '<br>')), unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
             
             # Prevention and Supplements cards
             col1, col2 = st.columns(2)
             
             with col1:
-                prevent_title = "Tips to Grow Healthy Plants :" if is_healthy else "Prevent This Plant Disease By follow below steps :"
+                prevent_title = "🌿 Tips to Grow Healthy Plants" if is_healthy else "🛡️ Prevention Steps"
                 st.markdown(f"""
-                <div class="card">
-                    <h5><b>{prevent_title}</b></h5>
-                    <p>{prevent.replace(chr(10), '<br>')}</p>
+                <div class="card-modern fade-in">
+                    <h3 class="card-title">{prevent_title}</h3>
+                    <p class="card-text">{prevent.replace(chr(10), '<br>')}</p>
                 </div>
                 """, unsafe_allow_html=True)
             
             with col2:
                 if pred != 4:  # Skip background without leaves
-                    supplement_title = "Fertilizer :" if is_healthy else "Supplements :"
+                    supplement_title = "🌱 Recommended Fertilizer" if is_healthy else "💊 Recommended Supplement"
                     st.markdown(f"""
-                    <div class="card">
-                        <center>
-                            <h5><b>{supplement_title}</b></h5>
-                            <br>
+                    <div class="card-modern fade-in" style="text-align: center;">
+                        <h3 class="card-title">{supplement_title}</h3>
+                        <br>
                     """, unsafe_allow_html=True)
                     
                     try:
@@ -479,30 +710,35 @@ elif st.session_state.page == "AI Disease Detection":
                         pass
                     
                     st.markdown(f"""
-                            <br>
-                            <h6 id="content">{supplement_name}</h6>
-                            <br>
+                        <br>
+                        <h4 style="color: #2c3e50; font-weight: 600; margin: 1rem 0;">{supplement_name}</h4>
+                        <br>
                     """, unsafe_allow_html=True)
                     
                     if is_valid_url(supplement_buy_link):
                         st.markdown(f"""
-                        <a target="_blank" href="{supplement_buy_link}">
-                            <button class="green-btn">Buy Product</button>
+                        <a target="_blank" href="{supplement_buy_link}" style="text-decoration: none;">
+                            <button class="btn-buy-modern">🛒 Buy Product</button>
                         </a>
                         """, unsafe_allow_html=True)
                     
-                    st.markdown("</center></div>", unsafe_allow_html=True)
+                    st.markdown("</div>", unsafe_allow_html=True)
 
 # Market Page
 elif st.session_state.page == "Market":
     st.markdown("""
-    <h1 class="page-title"><b>Supplements</b></h1>
+    <h1 class="section-title">Supplements & Fertilizers</h1>
+    <p style="text-align: center; color: #5a6c7d; font-size: 1.1rem; margin-bottom: 2rem;">
+        Browse our curated selection of supplements and fertilizers for optimal plant health
+    </p>
     """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns([5, 1])
+    col1, col2 = st.columns([4, 1])
     with col1:
         st.markdown("""
-        <p style="font-weight: 500; color: black; font-size: 1.1rem;">Buy Supplements & Fertilizer at one place</p>
+        <p style="font-weight: 500; color: #2c3e50; font-size: 1.1rem;">
+            Buy Supplements & Fertilizer at one place
+        </p>
         """, unsafe_allow_html=True)
     with col2:
         filter_option = st.selectbox(
@@ -532,49 +768,89 @@ elif st.session_state.page == "Market":
                     continue
                 
                 with col:
+                    badge = '<span class="badge-healthy">Healthy</span>' if is_healthy else '<span class="badge-diseased">Diseased</span>'
+                    product_type = "Fertilizer" if is_healthy else "Supplements"
+                    
                     st.markdown(f"""
-                    <div class="card-sm">
-                        <center>
+                    <div class="card-product fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="color: #2c3e50; font-weight: 600; margin-bottom: 0.5rem;">{product_type}</h5>
+                            {badge}
+                        </div>
                     """, unsafe_allow_html=True)
-                    
-                    if is_healthy:
-                        st.markdown("""
-                        <h5>Fertilizer<b style="color: green;"> (Healthy):</b></h5>
-                        """, unsafe_allow_html=True)
-                    else:
-                        st.markdown("""
-                        <h5>Supplements<b style="color: red;"> (Diseased):</b></h5>
-                        """, unsafe_allow_html=True)
-                    
-                    st.markdown("<br>", unsafe_allow_html=True)
                     
                     try:
                         img_url = supplement_info['supplement image'].iloc[idx]
                         if is_valid_url(img_url):
-                            st.image(img_url, width=100, use_container_width=False)
+                            st.image(img_url, width=120, use_container_width=False)
                     except:
                         pass
                     
-                    st.markdown("<br><br>", unsafe_allow_html=True)
-                    st.markdown(f"<h6>For {disease_info['disease_name'].iloc[idx]}</h6>", unsafe_allow_html=True)
-                    st.markdown(f"<p>{supplement_info['supplement name'].iloc[idx]}</p>", unsafe_allow_html=True)
+                    st.markdown(f"""
+                        <br>
+                        <h6 style="color: #2c3e50; font-weight: 600; margin: 1rem 0;">
+                            For {disease_info['disease_name'].iloc[idx]}
+                        </h6>
+                        <p style="color: #5a6c7d; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                            {supplement_info['supplement name'].iloc[idx]}
+                        </p>
+                    """, unsafe_allow_html=True)
                     
                     buy_link = supplement_info['buy link'].iloc[idx]
                     if is_valid_url(buy_link):
                         st.markdown(f"""
-                        <a target="_blank" href="{buy_link}">
-                            <button class="red-btn">Buy Product</button>
+                        <a target="_blank" href="{buy_link}" style="text-decoration: none;">
+                            <button class="btn-buy-modern">🛒 Buy Product</button>
                         </a>
                         """, unsafe_allow_html=True)
                     
-                    st.markdown("</center></div>", unsafe_allow_html=True)
+                    st.markdown("</div>", unsafe_allow_html=True)
 
 # Contact Us Page
 elif st.session_state.page == "Contact Us":
     st.markdown("""
-    <h1 class="page-title"><b>📞Contact-Us📞</b></h1>
-    <p style="font-weight: 500; color: black; text-align: center; font-size: 1.1rem;">
-        For Any Queries & Suggestions Contact Us. We Are Happy To Help.
+    <h1 class="section-title">Contact Us</h1>
+    <p style="text-align: center; color: #5a6c7d; font-size: 1.1rem; margin-bottom: 3rem;">
+        Have questions or suggestions? We're here to help! Get in touch with our team.
     </p>
     """, unsafe_allow_html=True)
-
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="card-modern fade-in">
+            <h3 class="card-title">🌱 Get in Touch</h3>
+            <p class="card-text" style="margin-bottom: 2rem;">
+                We're here to help you with any questions, technical support, or feedback about CultiKure.
+            </p>
+            <div style="margin: 1.5rem 0;">
+                <h4 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">Contact Information</h4>
+                <p class="card-text">
+                    <strong>📧 Email:</strong> support@cultikure.com<br><br>
+                    <strong>📞 Phone:</strong> +1 (555) 123-4567<br><br>
+                    <strong>📍 Address:</strong> 123 Agriculture Street<br>
+                    Farm City, FC 12345
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div class="card-modern fade-in">
+            <h3 class="card-title">💬 Send us a Message</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        with st.form("contact_form"):
+            name = st.text_input("Your Name *", placeholder="Enter your name")
+            email = st.text_input("Your Email *", placeholder="Enter your email")
+            message = st.text_area("Your Message *", height=200, placeholder="Type your message here...")
+            submit = st.form_submit_button("📤 Send Message", use_container_width=True)
+            
+            if submit:
+                if name and email and message:
+                    st.success("✅ Thank you for your message! We'll get back to you soon.")
+                else:
+                    st.error("⚠️ Please fill in all fields marked with *.")
