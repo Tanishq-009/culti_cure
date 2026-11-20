@@ -44,6 +44,28 @@ python app.py
 
 Then open http://localhost:5000 in your browser. Press `Ctrl + C` in the terminal to stop the server.
 
+## Deploy on Render
+
+The repo includes a `render.yaml`, so Render reads all settings from it.
+
+1. Sign in at https://render.com with GitHub.
+2. Click **New → Blueprint** and pick this repository. Render creates a web service named `culti-cure`.
+3. Wait for the first build (installing PyTorch takes a few minutes). The site is then live at `https://culti-cure.onrender.com` (or similar).
+
+Every `git push` to `master` redeploys the site automatically.
+
+| Setting | Value |
+|---|---|
+| Build command | `pip install -r requirements.txt` |
+| Start command | `gunicorn app:app --workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT` |
+| Python | 3.13.4 (`PYTHON_VERSION`) |
+
+Notes:
+- `requirements.txt` installs the CPU-only build of PyTorch to keep the build small.
+- The app uses about 480 MB of RAM, close to the free plan's 512 MB. If Render reports "out of memory", switch the service to the Starter plan.
+- On the free plan the site sleeps after 15 minutes without visits; the first visit after that takes about a minute to wake up.
+- Uploaded photos are deleted whenever the service restarts or redeploys.
+
 ## Pages
 
 | URL | Page |

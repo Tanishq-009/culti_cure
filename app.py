@@ -1,4 +1,5 @@
 import os
+from werkzeug.utils import secure_filename
 from flask import Flask, redirect, render_template, request, jsonify
 from PIL import Image
 import torchvision.transforms.functional as TF
@@ -9,13 +10,16 @@ import torch.nn as nn
 from torchvision import transforms
 import torchvision.models as models
 
+# Keep CPU/memory use low on small servers (e.g. Render free tier)
+torch.set_num_threads(1)
+
 # Load CSV files
 disease_info = pd.read_csv('disease_info.csv', encoding='cp1252')
 supplement_info = pd.read_csv('supplement_info.csv', encoding='cp1252')
 
 # Initialize ResNet50 model with 39 classes
 num_classes = 39
-model = models.resnet50(pretrained=False)
+model = models.resnet50(weights=None)
 model.fc = nn.Linear(model.fc.in_features, num_classes)
 
 # Load the trained model
@@ -89,7 +93,7 @@ def submit():
             if image.filename == '':
                 return "No image selected", 400
             
-            filename = image.filename
+            filename = secure_filename(image.filename) or 'upload.jpg'
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image.save(file_path)
             print(f"Image saved to: {file_path}")
@@ -125,4 +129,7 @@ def market():
                          buy=list(supplement_info['buy link']))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Render (and other hosts) set PORT; locally it defaults to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_DEBUG', '1') == '1'
+    app.run(host='0.0.0.0', port=port, debug=debug)

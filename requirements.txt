@@ -1,6 +1,11 @@
-Flask>=2.0.0
-Pillow
-pandas
-numpy
-torch>=2.9.0
-torchvision>=0.24.0
+# CPU-only PyTorch (much smaller than the default GPU build on Linux)
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# Versions match the ones tested locally
+Flask==3.1.2
+gunicorn==23.0.0
+Pillow==11.3.0
+pandas==2.3.3
+numpy==2.3.3
+torch==2.9.0
+torchvision==0.24.0
