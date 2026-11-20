@@ -35,9 +35,7 @@ config.py
 *.secret
 *.key
 
-# Compiled assets
-*.css
-*.js
+# Source maps
 *.js.map
 
 # __init__.py files
@@ -60,3 +58,9 @@ config.py
 *.bak
 # Machine Learning Model Files
 *.pt
+
+# Tunnel output (not tracked)
+cloudflared.exe
+cloudflared.err
+tunnel_error.txt
+tunnel_output.txt
