@@ -4,7 +4,6 @@ CultiKure is a web app that detects plant diseases from a photo of a leaf. Uploa
 
 **🌐 Live demo: https://culti-cure.onrender.com**
 
-> Hosted on Render's free plan, so the site sleeps when idle. The first visit may take about a minute to load.
 
 ## Features
 
